@@ -77,7 +77,6 @@ def get_all_pages(url: str, params: dict[str, str], key: str) -> list[dict[str, 
             break
     return items
 
-    
 def bucket_get(folder_id: str) -> list[dict[str, Any]]:
     url = "https://storage.api.cloud.yandex.net/storage/v1/buckets"
     return get_all_pages(url, {"folderId": folder_id}, "buckets")
