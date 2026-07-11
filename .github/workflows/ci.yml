@@ -19,13 +19,28 @@ jobs:
   bandit:
     needs: [gitleaks]
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - name: Bandit SAST
         run: |
           pip install bandit
-          bandit -r . || true
+          bandit -r . 
+
+  pytest:
+    needs: [gitleaks]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14.6'
+          cache: 'pip'
+      - name: Install dependencies
+        run: |
+          pip install -r requirements-dev.txt
+      - name: Run Test
+        run: pytest Tests
 
   pip:
     needs: [gitleaks]
@@ -48,7 +63,7 @@ jobs:
           flake8 . --max-line-length=120
 
   build:
-    needs: [bandit, pip, flake8]
+    needs: [bandit, pip, flake8, pytest]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

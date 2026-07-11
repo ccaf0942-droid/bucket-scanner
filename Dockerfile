@@ -5,9 +5,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt && \
     rm -rf /root/.cache/pip
 
-COPY sa.py . 
+COPY . .
 
 RUN useradd -m -u 1001 appuser
 USER appuser
 
-CMD ["python", "sa.py"]
+CMD ["python", "-m", "src.main"]
