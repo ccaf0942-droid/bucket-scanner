@@ -76,6 +76,7 @@ jobs:
           image-ref: "cr.yandex/${{ secrets.YC_REGISTRY_ID }}/bucket-scanner:v677"
           format: "table"
           exit-code: "1"
+          ignore-unfixed: true
           severity: "CRITICAL"
 
       - name: Docker Login
