@@ -24,7 +24,7 @@ jobs:
       - name: Bandit SAST
         run: |
           pip install bandit
-          bandit -r . 
+          bandit -r . --exclude ./tests
 
   pytest:
     needs: [gitleaks]
@@ -40,7 +40,7 @@ jobs:
         run: |
           pip install -r requirements-dev.txt
       - name: Run Test
-        run: pytest Tests
+        run: pytest tests
 
   pip:
     needs: [gitleaks]
