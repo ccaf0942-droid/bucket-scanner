@@ -1,5 +1,4 @@
 import json
-import logging
 from typing import Any
 from botocore.exceptions import ClientError
 from src.utils.error_utils import except_function

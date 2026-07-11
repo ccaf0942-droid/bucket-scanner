@@ -2,7 +2,6 @@ import logging
 from typing import Any
 from src.clients.yandex_client import cdn_originGroup_get, cdn_resources_get
 from src.utils.risk_utils import overall_risk
-import logging
 
 logger = logging.getLogger(__name__)
 

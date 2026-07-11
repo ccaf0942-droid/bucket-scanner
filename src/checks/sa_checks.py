@@ -12,7 +12,6 @@ from src.clients.yandex_client import (
 from src.utils.extract_utils import _extract_sa_roles_for_bucket
 from src.utils.risk_utils import overall_risk
 from src.config import DANGEROUS_ROLES, SAFE_ROLES
-import logging
 
 logger = logging.getLogger(__name__)
 
