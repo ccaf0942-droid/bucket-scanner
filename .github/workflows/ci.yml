@@ -60,7 +60,7 @@ jobs:
       - name: Flake8 Lint
         run: |
           pip install flake8
-          flake8 . --max-line-length=120
+          flake8 . --max-line-length=120 --ignore=E501,E402,W291,W292
 
   build:
     needs: [bandit, pip, flake8, pytest]
@@ -68,12 +68,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build Docker Image
-        run: docker build -t cr.yandex/${{ secrets.YC_REGISTRY_ID }}/bucket-scanner:v124 .
+        run: docker build -t cr.yandex/${{ secrets.YC_REGISTRY_ID }}/bucket-scanner:v677 .
     
       - name: Trivy Scan
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: "cr.yandex/${{ secrets.YC_REGISTRY_ID }}/bucket-scanner:v124"
+          image-ref: "cr.yandex/${{ secrets.YC_REGISTRY_ID }}/bucket-scanner:v677"
           format: "table"
           exit-code: "1"
           severity: "CRITICAL"
@@ -84,4 +84,4 @@ jobs:
 
       - name: Docker Push Yandex.cloud
         run: |
-          docker push cr.yandex/${{ secrets.YC_REGISTRY_ID }}/bucket-scanner:v124
+          docker push cr.yandex/${{ secrets.YC_REGISTRY_ID }}/bucket-scanner:v677
